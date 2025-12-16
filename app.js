@@ -957,6 +957,8 @@ let treeFilter = 'all';
 const unitGrid = document.getElementById('unit-grid');
 const tipsContainer = document.getElementById('tips');
 const sessionEl = document.getElementById('session');
+const versionBadge = document.getElementById('app-version');
+const platformLabel = document.getElementById('app-platform');
 const promptText = document.getElementById('prompt-text');
 const choicesEl = document.getElementById('choices');
 const inputRow = document.getElementById('input-row');
@@ -997,6 +999,21 @@ const milestoneGrid = document.getElementById('milestone-grid');
 const scenarioGrid = document.getElementById('scenario-grid');
 const grammarGrid = document.getElementById('grammar-grid');
 const examList = document.getElementById('exam-list');
+
+function setDesktopBadges() {
+  if (versionBadge) {
+    const tag = window.SloveneQuestDesktop?.version ? `v${window.SloveneQuestDesktop.version}` : 'desktop';
+    versionBadge.textContent = tag;
+  }
+
+  if (platformLabel) {
+    const platform = window.SloveneQuestDesktop?.platform;
+    if (platform === 'darwin') platformLabel.textContent = 'Ready for macOS';
+    else if (platform === 'win32') platformLabel.textContent = 'Ready for Windows';
+    else if (platform === 'linux') platformLabel.textContent = 'Ready for Linux';
+    else if (platform) platformLabel.textContent = `Ready on ${platform}`;
+  }
+}
 
 function renderUnits() {
   const template = document.getElementById('unit-template');
@@ -1441,6 +1458,7 @@ function init() {
     fallbackSection?.removeAttribute('hidden');
     return;
   }
+  setDesktopBadges();
   renderUnits();
   renderTips();
   renderCoach();

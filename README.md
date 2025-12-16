@@ -1,6 +1,6 @@
 # Slovene Quest
 
-A small Duolingo-inspired single-page app focused on beginner-to-intermediate Slovenian topics (A1–A2). Launch `index.html` in your browser to explore units, review cultural/grammar tips, and try interactive drills.
+A Duolingo-inspired desktop app focused on beginner-to-intermediate Slovenian topics (A1–A2). Launch Slovene Quest in its own window to explore units, review cultural/grammar tips, and try interactive drills without relying on a browser tab.
 
 ## Features
 - Course path cards and a visual skill tree covering greetings, family/people, work/school, numbers/time, travel & lodging, shopping, accusative vs. dative cases, genitive/locative, past tense, future/conditional, motion verbs/perfective pairs, food, health, free-time culture, housing/errands, digital life, holiday history, city navigation, sustainability, business, news/opinions, writing, idioms, art, paperwork/finance, science/innovation, stadium phrases, dialect/register shifts, heritage/history, listening strategy, debate language, report writing, service fixes, plus new weather/climate, tech-support, and community-event lessons.
@@ -14,9 +14,16 @@ A small Duolingo-inspired single-page app focused on beginner-to-intermediate Sl
 - Checkpoint milestones and skill-tree filters so you can see what to finish before moving deeper into the bridge lane.
 
 ## Running locally
-No build step is required—open `index.html` in a modern browser. If your preview shows a blank/404 page, serve the folder (many preview tools need this) and open `http://localhost:8000`:
+1) Install dependencies (downloads Electron for the desktop shell):
 
 ```bash
-python -m http.server 8000
-# then visit http://localhost:8000
+npm install
 ```
+
+2) Start the desktop window:
+
+```bash
+npm start
+```
+
+If you want a browser-only preview instead, open `index.html` directly or serve the folder with `python -m http.server 8000`.
