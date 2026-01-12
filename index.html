@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slovene Quest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="desktop-bg">
+  <div class="desktop-frame">
+    <div class="app-chrome">
+      <div class="chrome-left">
+        <div class="chrome-logo">SQ</div>
+        <div>
+          <p class="eyebrow">Slovene Quest Desktop</p>
+          <h2 class="chrome-title">Immersive Slovene coach</h2>
+        </div>
+      </div>
+      <div class="chrome-right">
+        <span class="status-dot online"></span>
+        <span class="status-text" id="app-platform">Desktop ready</span>
+        <span class="pill ghost version" id="app-version">v1.0.0</span>
+      </div>
+    </div>
+
+    <div class="app-shell">
+    <header class="top-nav">
+      <div class="brand">
+        <div class="logo">S</div>
+        <div>
+          <p class="eyebrow">Duolingo-style pilot</p>
+          <h1>Slovene Quest</h1>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <div class="pill score" id="xp-pill">XP 0</div>
+        <div class="pill streak" id="streak-pill">🔥 3-day streak</div>
+        <button class="primary" id="resume-btn">Resume</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Built for Slovenian learners</p>
+          <h2>Progressive lessons, quick drills, and cultural notes.</h2>
+          <p class="lede">Based on beginner-to-bridge Slovene outlines: greetings, cases (tožilnik, dajalnik, rodilnik, mestnik), verbs of motion, perfective/imperfective pairs, travel, work, media, opinions, writing, and everyday phrases.</p>
+          <div class="hero-actions">
+            <button class="primary" id="start-btn">Start next lesson</button>
+            <button class="ghost" id="review-btn">Review vocabulary</button>
+            <button class="ghost" id="warmup-btn">Quick warmup</button>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="progress-ring">
+            <svg viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="54" class="ring-bg" />
+              <circle cx="60" cy="60" r="54" class="ring-progress" id="ring-progress" />
+            </svg>
+            <div class="ring-label">
+              <span id="goal-percent">0%</span>
+              <small>daily goal</small>
+            </div>
+          </div>
+          <div class="goal-text">
+            <p class="eyebrow">Daily goal</p>
+            <h3>15 minutes of Slovene</h3>
+            <p>Short, game-like tasks with immediate feedback. Earn crowns by mastering each topic.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard">
+        <div class="card">
+          <div class="card-header">
+            <h3>Course path</h3>
+            <span class="pill">A1-A2 focus</span>
+          </div>
+          <div class="unit-grid" id="unit-grid"></div>
+        </div>
+
+        <div class="card wide card-map">
+          <div class="card-header">
+            <h3>Skill tree</h3>
+            <span class="pill ghost">Roadmap</span>
+          </div>
+          <p class="muted">Follow the themed track to move from survival phrases to fluent storytelling. Each node links back to an active lesson.</p>
+          <div class="tree-toolbar">
+            <div class="tree-legend">
+              <span class="dot active"></span><small>Active</small>
+              <span class="dot next"></span><small>Next</small>
+              <span class="dot locked"></span><small>Queued</small>
+            </div>
+            <div class="chip-group" id="tree-filters">
+              <button class="chip filled" data-filter="all">All</button>
+              <button class="chip" data-filter="active">Active</button>
+              <button class="chip" data-filter="next">Next</button>
+              <button class="chip" data-filter="locked">Queued</button>
+            </div>
+          </div>
+          <div class="skill-tree" id="skill-tree"></div>
+        </div>
+
+        <div class="card card-highlight">
+          <div class="card-header">
+            <h3>Checkpoints</h3>
+            <span class="pill ghost">Milestones</span>
+          </div>
+          <p class="muted">Use the mini checkpoints to see what to finish before moving deeper into the bridge lane.</p>
+          <div class="milestone-grid" id="milestone-grid"></div>
+        </div>
+
+        <div class="card card-muted">
+          <div class="card-header">
+            <h3>Study tips</h3>
+            <span class="pill ghost">Reference</span>
+          </div>
+          <ul class="tips" id="tips"></ul>
+        </div>
+
+        <div class="card coach">
+          <div class="card-header">
+            <h3>Weekly coach</h3>
+            <span class="pill ghost">Plan</span>
+          </div>
+          <p class="muted">Crash-proof onboarding: three focused tasks per day with culture notes.</p>
+          <div class="coach-grid" id="coach-grid"></div>
+        </div>
+
+        <div class="card card-highlight">
+          <div class="card-header">
+            <h3>Skill boosts</h3>
+            <span class="pill ghost">Keep momentum</span>
+          </div>
+          <p class="muted">Fire off a mixed drill, review tricky grammar, or add a cultural note to your streak.</p>
+          <div class="boost-grid">
+            <div class="boost">
+              <div>
+                <p class="eyebrow">5-question sprint</p>
+                <h4>Mixed drill</h4>
+                <p class="muted">Blends items from every unit with instant feedback.</p>
+              </div>
+              <button class="primary small" id="mix-btn">Start mix</button>
+            </div>
+            <div class="boost">
+              <div>
+                <p class="eyebrow">Grammar focus</p>
+                <h4>Case dojo</h4>
+                <p class="muted">Accusative vs. dative with real phrases you can reuse.</p>
+              </div>
+              <button class="ghost small" id="case-btn">Review</button>
+            </div>
+            <div class="boost">
+              <div>
+                <p class="eyebrow">Culture byte</p>
+                <h4>Weekend challenge</h4>
+                <p class="muted">Travel, festivals, and small talk at the café.</p>
+              </div>
+              <button class="ghost small" id="travel-btn">Try now</button>
+            </div>
+            <div class="boost">
+              <div>
+                <p class="eyebrow">Conversation</p>
+                <h4>Story mode</h4>
+                <p class="muted">Café small talk and culture bites stitched into one flow.</p>
+              </div>
+              <button class="ghost small" id="story-btn">Tell a story</button>
+            </div>
+            <div class="boost">
+              <div>
+                <p class="eyebrow">Level up</p>
+                <h4>B1 bridge</h4>
+                <p class="muted">Genitive/locative, aspect contrast, and longer answers.</p>
+              </div>
+              <button class="primary small" id="advanced-btn">Deep dive</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-glow">
+          <div class="card-header">
+            <h3>Achievements</h3>
+            <span class="pill ghost">Motivation</span>
+          </div>
+          <div class="achievement-grid" id="achievements"></div>
+        </div>
+
+        <div class="card card-muted">
+          <div class="card-header">
+            <h3>Phrasebook</h3>
+            <span class="pill ghost">Quick recall</span>
+          </div>
+          <div class="phrasebook" id="phrasebook"></div>
+        </div>
+
+        <div class="card card-highlight">
+          <div class="card-header">
+            <h3>Bridge roadmap</h3>
+            <span class="pill ghost">B1-ready</span>
+          </div>
+          <p class="muted">Lightweight prompts to push beyond A2: longer turns, opinions, and structured writing.</p>
+          <div class="roadmap" id="roadmap"></div>
+        </div>
+
+        <div class="card card-muted">
+          <div class="card-header">
+            <h3>Practice lab</h3>
+            <span class="pill ghost">Pronunciation</span>
+          </div>
+          <div class="lab-grid" id="labs"></div>
+        </div>
+
+        <div class="card card-glow">
+          <div class="card-header">
+            <h3>Culture spotlight</h3>
+            <span class="pill ghost">Context</span>
+          </div>
+          <div class="culture-grid" id="culture"></div>
+        </div>
+
+        <div class="card card-muted wide">
+          <div class="card-header">
+            <h3>Daily quest board</h3>
+            <span class="pill ghost">Today</span>
+          </div>
+          <p class="muted">Tiny nudges to keep you in motion: warmups, pronunciation, and one immersion hit.</p>
+          <div class="quest-board" id="quest-list"></div>
+        </div>
+
+        <div class="card card-highlight wide">
+          <div class="card-header">
+            <h3>Immersion lane</h3>
+            <span class="pill ghost">Listen + read</span>
+          </div>
+          <div class="immersion" id="immersion-list"></div>
+        </div>
+
+        <div class="card wide card-glow">
+          <div class="card-header">
+            <h3>Momentum tracker</h3>
+            <span class="pill ghost">Week</span>
+          </div>
+          <div class="momentum">
+            <div class="momentum-bars" id="momentum-bars"></div>
+            <div class="micro-stats" id="micro-stats"></div>
+          </div>
+        </div>
+
+        <div class="card card-highlight wide">
+          <div class="card-header">
+            <h3>Scenario studio</h3>
+            <span class="pill ghost">Roleplay</span>
+          </div>
+          <p class="muted">Chain dialogues for cafés, job calls, and emergencies with ready-made prompts.</p>
+          <div class="scenario-grid" id="scenario-grid"></div>
+        </div>
+
+        <div class="card card-muted wide">
+          <div class="card-header">
+            <h3>Grammar spotlight</h3>
+            <span class="pill ghost">Micro drills</span>
+          </div>
+          <div class="grammar-grid" id="grammar-grid"></div>
+        </div>
+
+        <div class="card card-glow wide">
+          <div class="card-header">
+            <h3>Exam-ready sprints</h3>
+            <span class="pill ghost">B1+</span>
+          </div>
+          <p class="muted">Short, timed challenges modeled on listening/reading/writing prompts.</p>
+          <div class="exam-list" id="exam-list"></div>
+        </div>
+      </section>
+
+      <section class="session" id="session" hidden>
+        <div class="session-header">
+          <h3 id="session-title">Lesson</h3>
+          <span class="pill" id="session-progress">0/0</span>
+        </div>
+        <div class="session-body">
+          <div class="prompt" id="prompt-text"></div>
+          <div id="choices" class="choices"></div>
+          <div class="input-row" id="input-row" hidden>
+            <input id="text-answer" type="text" placeholder="Type your answer" />
+            <button class="primary" id="submit-btn">Check</button>
+          </div>
+        </div>
+        <div class="session-footer">
+          <p id="feedback" class="feedback"></p>
+          <div class="session-actions">
+            <button class="ghost" id="skip-btn">Skip</button>
+            <button class="primary" id="next-btn" disabled>Next</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    </div>
+  </div>
+
+  <section class="fallback" id="fallback" hidden>
+    <h3>Something went wrong loading the app.</h3>
+    <p>Restart Slovene Quest Desktop or run <code>npm start</code> from this folder if you are developing.</p>
+  </section>
+
+  <template id="unit-template">
+    <div class="unit">
+      <div class="unit-icon">•</div>
+      <div class="unit-info">
+        <p class="eyebrow"></p>
+        <h4></h4>
+        <p class="muted"></p>
+        <div class="progress-track"><span class="fill"></span></div>
+      </div>
+      <button class="primary small">Start</button>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

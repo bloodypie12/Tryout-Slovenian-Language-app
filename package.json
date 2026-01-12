@@ -1,0 +1,16 @@
+{
+  "name": "slovene-quest-desktop",
+  "version": "1.0.0",
+  "description": "Desktop shell for the Slovene Quest learning experience",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "desktop": "electron .",
+    "check": "node --check app.js && node --check main.js"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "electron": "^31.2.0"
+  }
+}
